@@ -1,0 +1,129 @@
+﻿body {
+  margin:0px;
+  background-image:none;
+  position:static;
+  left:auto;
+  width:694px;
+  margin-left:0;
+  margin-right:0;
+  text-align:left;
+}
+#base {
+  position:absolute;
+  z-index:0;
+}
+#u85_div {
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:657px;
+  height:362px;
+  background:inherit;
+  background-color:rgba(255, 102, 51, 1);
+  box-sizing:border-box;
+  border-width:1px;
+  border-style:solid;
+  border-color:rgba(121, 121, 121, 1);
+  border-radius:0px;
+  -moz-box-shadow:none;
+  -webkit-box-shadow:none;
+  box-shadow:none;
+}
+#u85 {
+  position:absolute;
+  left:37px;
+  top:111px;
+  width:657px;
+  height:362px;
+}
+#u86 {
+  position:absolute;
+  left:2px;
+  top:173px;
+  width:653px;
+  visibility:hidden;
+  word-wrap:break-word;
+}
+#u87_div {
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:433px;
+  height:57px;
+  background:inherit;
+  background-color:rgba(255, 255, 255, 0);
+  border:none;
+  border-radius:0px;
+  -moz-box-shadow:none;
+  -webkit-box-shadow:none;
+  box-shadow:none;
+  font-family:'Arial Negreta', 'Arial Normal', 'Arial';
+  font-weight:700;
+  font-style:normal;
+  font-size:48px;
+}
+#u87 {
+  position:absolute;
+  left:149px;
+  top:264px;
+  width:433px;
+  height:57px;
+  font-family:'Arial Negreta', 'Arial Normal', 'Arial';
+  font-weight:700;
+  font-style:normal;
+  font-size:48px;
+}
+#u88 {
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:433px;
+  white-space:nowrap;
+}
+#u89_div {
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:92px;
+  height:36px;
+  background:inherit;
+  background-color:rgba(255, 255, 255, 1);
+  border:none;
+  border-radius:1px;
+  -moz-box-shadow:0px 1px 2px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow:0px 1px 2px rgba(0, 0, 0, 0.2);
+  box-shadow:0px 1px 2px rgba(0, 0, 0, 0.2);
+  font-size:14px;
+}
+#u89 {
+  position:absolute;
+  left:563px;
+  top:407px;
+  width:92px;
+  height:36px;
+  font-size:14px;
+}
+#u89_div.mouseDown {
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:92px;
+  height:36px;
+  background:inherit;
+  background-color:rgba(94, 94, 94, 1);
+  border:none;
+  border-radius:1px;
+  -moz-box-shadow:0px 1px 2px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow:0px 1px 2px rgba(0, 0, 0, 0.2);
+  box-shadow:0px 1px 2px rgba(0, 0, 0, 0.2);
+  font-size:14px;
+}
+#u89.mouseDown {
+}
+#u90 {
+  position:absolute;
+  left:2px;
+  top:10px;
+  width:88px;
+  word-wrap:break-word;
+}
