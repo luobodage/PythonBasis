@@ -15,7 +15,6 @@ def hq_token():
     # 获取tag地址
     url_get_tag = f'https://api.weixin.qq.com/cgi-bin/tags/get?access_token={token}'
     requests.get(url_get_tag)
-    print('-----------------------------------------')
 
 
 def post_cr(name):  # 传入数据
@@ -28,7 +27,6 @@ def post_cr(name):  # 传入数据
     data = {'tag': {'name': name}}
     # 传入json数据
     requests.post(url=url_post_tag, json=data)
-    print('-----------------------------------------')
 
 
 # 输出json格式数据
@@ -56,7 +54,6 @@ def update(id, name):
     requests.post(url=url_post_tag_update, json=data_update)
     # assert 'cfylalalalala' == content_tag_get.json()['tags'][1]['name']
     get()
-    print('-----------------------------------------')
 
 
 def delete(number):
@@ -64,12 +61,11 @@ def delete(number):
     data_delete = {'tag': {'id': number}}
     requests.post(url=url_post_tag_delete, json=data_delete)
     get()
-    print('-----------------------------------------')
 
 
 if __name__ == '__main__':
     hq_token()  # 获取token
     get()  # 查看当前服务器内容
-    update(103, 'daweitianlong!')  # 修改
-    post_cr('cfy82')  # 添加
+    update(103, 'jingguanhao')  # 修改
+    post_cr('cfy83')  # 添加
     delete(106)  # 按照id编号删除
