@@ -1,6 +1,5 @@
 import requests
 import lxml.etree as le
-import time
 
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36',
@@ -9,6 +8,7 @@ headers = {
 
 
 def get_url():
+    #你要爬取的小说所在的主页
     home_url = 'http://book.zongheng.com/showchapter/672340.html'
 
     content = requests.get(
