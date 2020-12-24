@@ -4,7 +4,7 @@ from 第七天 import GetCookie
 
 def spdier():
     # 这里传入的是页数以及输入的关键字
-    cookie = GetCookie.get_cookie(2, 'java')
+    cookie = GetCookie.get_cookie(5, 'java')
     # 从拉勾网找到数据的url 可以通过ctrl+f 的方法 千万不要用眼睛找
     home_url = 'https://www.lagou.com/jobs/positionAjax.json?needAddtionalResult=true'
     headers = {
@@ -31,7 +31,7 @@ def spdier():
     ).content
 
     # 写入二进制码 然后转化成json文件
-    with open('Data2.json', 'ab') as f:
+    with open('Data5.json', 'ab') as f:
         f.write(content)
 
 if __name__ == '__main__':
