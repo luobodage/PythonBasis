@@ -1,7 +1,11 @@
 import pandas as pd
 
+"""
+@主要实现:整理薪资的格式 把'3k-5k'这种格式变成(3000+5000)/2
+"""
+
 # 文件路径
-csv_path = 'data.csv'
+csv_path = 'data/data.csv'
 # 数据读取
 data = pd.read_csv(csv_path, encoding='gb18030', error_bad_lines=False)
 xinxi_list = list(data['薪资'])

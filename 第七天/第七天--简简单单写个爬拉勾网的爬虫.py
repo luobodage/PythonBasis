@@ -1,10 +1,14 @@
 import requests as rq
 from 第七天 import GetCookie
 
+"""
+@主要实现:爬取json文件并且存在json文件夹里面
+"""
+
 
 def spdier():
     # 这里传入的是页数以及输入的关键字
-    cookie = GetCookie.get_cookie(6, 'java')
+    cookie = GetCookie.get_cookie(1, 'java')
     # 从拉勾网找到数据的url 可以通过ctrl+f 的方法 千万不要用眼睛找
     home_url = 'https://www.lagou.com/jobs/positionAjax.json?needAddtionalResult=true'
     headers = {
@@ -31,8 +35,9 @@ def spdier():
     ).content
 
     # 写入二进制码 然后转化成json文件
-    with open('Data6.json', 'ab') as f:
+    with open('data/Data1.json', 'ab') as f:
         f.write(content)
+
 
 if __name__ == '__main__':
     spdier()
