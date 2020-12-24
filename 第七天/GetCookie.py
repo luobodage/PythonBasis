@@ -32,9 +32,10 @@ def get_cookie(page, name):
     print(cookies_get)
     return 'JSESSIONID=' + cookies_get['JSESSIONID'] + \
            ';X_HTTP_TOKEN=' + cookies_get['X_HTTP_TOKEN'] + \
-           ';user_trace_token=' + cookies_get['user_trace_token'] + \
-           ';SEARCH_ID=' + cookies_get['SEARCH_ID']
+           ';user_trace_token=' + cookies_get['user_trace_token'] #+ \
+           # ';SEARCH_ID=' + cookies_get['SEARCH_ID']
 
 
 if __name__ == '__main__':
-    get_cookie('2', 'java')
+    pass
+    # get_cookie('2', 'java')
