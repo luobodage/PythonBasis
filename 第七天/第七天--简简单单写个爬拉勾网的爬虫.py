@@ -6,9 +6,9 @@ from 第七天 import GetCookie
 """
 
 
-def spdier():
+def spdier(page,name):
     # 这里传入的是页数以及输入的关键字
-    cookie = GetCookie.get_cookie(1, 'java')
+    cookie = GetCookie.get_cookie(page, name)
     # 从拉勾网找到数据的url 可以通过ctrl+f 的方法 千万不要用眼睛找
     home_url = 'https://www.lagou.com/jobs/positionAjax.json?needAddtionalResult=true'
     headers = {
@@ -35,9 +35,11 @@ def spdier():
     ).content
 
     # 写入二进制码 然后转化成json文件
-    with open('data/Data1.json', 'ab') as f:
+    with open(f'json/Data{page+1}.json', 'wb') as f:
         f.write(content)
 
 
 if __name__ == '__main__':
-    spdier()
+    # 爬取前十页的json文件
+    for i in range(5):
+        spdier(i,'python')
