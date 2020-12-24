@@ -35,11 +35,11 @@ def spdier(page,name):
     ).content
 
     # 写入二进制码 然后转化成json文件
-    with open(f'json/Data{page+1}.json', 'wb') as f:
+    with open(f'json/{name}_Data{page+1}.json', 'wb') as f:
         f.write(content)
 
 
 if __name__ == '__main__':
     # 爬取前十页的json文件
     for i in range(5):
-        spdier(i,'python')
+        spdier(i,'测试')
