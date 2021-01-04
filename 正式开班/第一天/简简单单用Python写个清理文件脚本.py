@@ -4,6 +4,10 @@ all_file = []  # 用来装地址的容器
 
 
 def dir_list(path):
+    """
+    :param path: 您要检索的磁盘路径
+    :return: 无返回值
+    """
     filenames = os.listdir(path)  # 返回path指定的文件夹包含的文件或文件夹的名字的列表。
     for filename in filenames:  # 遍历这个目录的名字
         filepath = os.path.join(path, filename)  # os.path获取文件的属性信息 并且连接起来
