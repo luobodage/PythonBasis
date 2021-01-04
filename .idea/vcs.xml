@@ -2,5 +2,11 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/正式开班/第一天/Programming language/Python" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/正式开班/第一天/Programming language/Python/51job工作信息爬取" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/正式开班/第一天/Programming language/Python/ImportGitHub" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/正式开班/第一天/Programming language/Python/graduation-project" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/正式开班/第一天/Programming language/Python/pythonProject/毕业设计" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/正式开班/第一天/Programming language/Python/pythonProject/毕业设计/GraduationProject" vcs="Git" />
   </component>
 </project>
