@@ -1,5 +1,5 @@
 import requests as rq
-from 房老师预热.第七天 import GetCookie
+from 预热.房老师预热.第七天 import GetCookie
 
 """
 @主要实现:爬取json文件并且存在json文件夹里面
