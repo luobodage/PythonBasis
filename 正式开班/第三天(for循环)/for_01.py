@@ -89,9 +89,17 @@ print("""
 定义一个正整数如：1205
 统计它的各位数字中零的个数，并求各位数字中的最大者。
 """)
-number = input("请输入一个数,我将输出反向的:")
-print(number[::-1])
-
+number = input("请输入一个数,我会计算其中的零的个数:")
+count = 0
+if len(number) > 1:
+    number_list = list(number)
+    for i in number_list:
+        if i == '0':
+            count += 1
+    print(f"零的个数为{count}")
+else:
+    print("您输入的数字个数太短")
+print(f"这个数面最大的是{max(number)}")
 # 9
 # 有1020个西瓜，第一天卖掉总数的一半后又多卖出两个，以后每天卖剩下的一半多两个，问几天以后能卖完
 #
@@ -295,8 +303,40 @@ for i in range(1, 6):
 
 # 7
 # 把上图形再倒过来，合成一个菱形图案
+print("-----------------------------------")
+print("把上图形再倒过来，合成一个菱形图案")
+for i in range(1, 6):
+    for j in range(1, 2 * i):
+        print('*', end='')
+    print()
+for i in range(1, 6):
+    for j in range(1, 2 * i):
+        print(' ', end='')
+    for k in range(11 - 2 * i, 0, -1):
+        print('*', end='')
+    print()
+
 # 8
 # 打印出一个空菱形图案
+print("-----------------------------------")
+print("打印出一个空菱形图案")
+for i in range(1, 6):
+    for j in range(1, 2 * i):
+        if j == 1 or j == 2 * i - 1:
+            print('*', end='')
+        else:
+            print(' ', end='')
+    print()
+for i in range(1, 6):
+    for j in range(1, 2 * i):
+        print(' ', end='')
+    for k in range(11 - 2 * i, 0, -1):
+        if k == 11 - 2 * i or k == 1:
+            print('*', end='')
+        else:
+            print(' ', end='')
+    print()
+
 # 9.
 # 求300 - 400
 # 之间的素数
@@ -314,6 +354,18 @@ for i in range(300, 401):
 
 # 10
 # 输出一个平行四边形的图案
+print("-----------------------------------")
+print("输出一个平行四边形的图案")
+for i in range(1, 6):
+    for j in range(1, 2 * i):
+        print('*', end='')
+    print()
+for i in range(1, 6):
+    for j in range(1, 2 * i):
+        print(' ', end='')
+    for k in range(11 - 2 * i, 0, -1):
+        print('*', end='')
+    print()
 # 11
 # 用while做
 # 鸡兔同笼。鸡兔一共有50只，脚一共有160只，问鸡和兔各多少只?要求鸡兔至少一样一只。
@@ -379,7 +431,8 @@ print("""
 个月）能繁殖成多少对？  分析：兔子的规律为数列，1，1，2，3，5，8，13，21
 """)
 number = int(input("请输入您要计算的月数(不计算兔子伤亡与死亡):"))
-L = [i for i in range(1, number + 1)]
+# L = [i for i in range(1, number + 1)]
+L = list(range(1, number + 1))
 fibonacci = []
 for i in range(len(L)):
     if L[i] == 1 or L[i] == 2:
