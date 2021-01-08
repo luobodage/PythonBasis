@@ -6,7 +6,7 @@
 import pandas as pd
 
 # 获取数据库数据
-fileDirectory = 'test.csv'
+fileDirectory = 'userInfo.csv'
 userInfo = pd.read_csv(fileDirectory)
 
 
@@ -20,9 +20,10 @@ def logIn():
     while count < 3:
         global username
         username = input("请输入用户名:")
-        if int(userInfo.loc[userInfo['username'] == username, 'accountStatus']) == 0:
-            print('您的账户已经冻结,请找银行管理员进行解冻...')
-            break
+        if username in list(userInfo['username']):
+            if int(userInfo.loc[userInfo['username'] == username, 'accountStatus']) == 0:
+                print('您的账户已经冻结,请找银行管理员进行解冻...')
+                break
         password = input("请输入账户密码:")
 
         for i in userInfo['username']:
@@ -143,7 +144,7 @@ def systemInterface():
     print('                 输入3-取钱                    ')
     print('                 输入4-转账                    ')
     print('                 输入0-退出ATM机               ')
-    print('-----------------------------------------------')
+    print('------------------------------------------------')
     functionButtons = input('请输入您要使用的功能:')
 
     while True:
