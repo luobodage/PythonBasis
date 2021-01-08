@@ -70,6 +70,14 @@ set_str = set(list_str)
 for i in set_str:
     print(i)
 
+str_ = ""
+for i in str_05 :
+    if i not in str_05:
+        str_ += i
+for j in str_:
+    print(j,":",str_05.count())
+
+
 # 6.
 # 用来去掉字符串右边的空格
 #
@@ -104,6 +112,7 @@ print("""
 
 def stringMovingCombination(str, n):
     print(str[len(str) - n:len(str)] + str[:len(str) - n])
+    print(str[-n::] + str[:len(str)-n])
 
 
 stringMovingCombination("HelloWorld", 3)
@@ -111,6 +120,7 @@ stringMovingCombination("HelloWorld", 3)
 # 9.
 # 求5个字符串中最长的那个，把最长的字符串打印出来
 print("--------------------------------------------")
+
 
 print("求5个字符串中最长的那个，把最长的字符串打印出来")
 
