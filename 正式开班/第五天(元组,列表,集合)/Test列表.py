@@ -96,7 +96,6 @@ for i in list_06:
 list_c.sort()
 print(list_c)
 
-
 # 7.. * 输出杨辉三角
 # 杨辉三角如下：
 # 1
@@ -145,16 +144,21 @@ a4 = 1 + 4 = 5
 依次类推。
 要求：读入一个整数n，输出杨辉三角的前n行
 """)
+
+
 def yanghuiTriangle(num):
     value = [1]
-    print(value)
+    print(value[0])
 
     for i in range(num):
         value.append(0)
         value = [value[i - 1] + value[i] for i in range(len(value))]
-        print(value)
+        for i in value:
+            print(i, end=' ')
+        print()
 
-yanghuiTriangle(7)
+
+yanghuiTriangle(10)
 # 8. * 列表的插入和删除
 # 定义一个长度为10的列表，通过控制台的输入5个数，
 # 1.
@@ -178,4 +182,3 @@ print(list_8)
 b = int(input("请输入你要删除的数字的位置:"))
 del list_8[b - 1]
 print(list_8)
-

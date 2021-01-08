@@ -14,4 +14,4 @@ def bubbleSort(list_name) -> List:
     return list_name
 
 
-    # print(bubbleSort([1, 2, 3, 4222, 1, 2, 3]))
+print(bubbleSort([1, 2, 3, 4222, 1, 2, 3]))
