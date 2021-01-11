@@ -128,7 +128,6 @@ def transfer(transfer_username, money):
             saveMoney(transfer_username, money)
             deductionFee(username, money * 0.002)
             print('转账成功')
-            checkBalances()
         else:
             print('取消转账...')
 
