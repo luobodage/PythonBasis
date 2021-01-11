@@ -3,11 +3,32 @@
 :time 2021/1/8
 :realizeFunction ATM简单实现
 """
-import pandas as pd
+import csv
 
-# 获取数据库数据
-fileDirectory = 'userInfo.csv'
-userInfo = pd.read_csv(fileDirectory)
+import pandas as pd
+import pymongo
+import codecs
+
+client = pymongo.MongoClient()
+c = pymongo.MongoClient().get_database("2021-01-11").get_collection('userInfo')
+
+
+def getDataFromTheDatabase():
+    """
+    从数据库获取数据并且生成csv文件
+    :return:
+    """
+    # 获取数据库数据
+    gen = c.find()
+    with codecs.open('userInfo.csv', 'w', 'utf-8') as csvfile:
+        writer = csv.writer(csvfile)
+        # 先写入columns_name
+        writer.writerow(['username', 'password', 'bankCardNumber', 'bankName', 'accountStatus', 'accountBalance'])
+        # 写入多行用writerows
+        for data in gen:
+            writer.writerows([[data["username"], data["password"], data["bankCardNumber"], data["bankName"],
+                               data["accountStatus"], data["accountBalance"]]])
+
 
 
 def logIn():
@@ -21,7 +42,8 @@ def logIn():
         global username
         username = input("请输入用户名:")
         if username in list(userInfo['username']):
-            if int(userInfo.loc[userInfo['username'] == username, 'accountStatus']) == 0:
+            # print()
+            if str(userInfo.loc[userInfo['username'] == username, 'accountStatus']) == '0':
                 print('您的账户已经冻结,请找银行管理员进行解冻...')
                 break
         password = input("请输入账户密码:")
@@ -53,6 +75,21 @@ def writeFile(filepath):
     :return: 生成一个文件 更新文件
     """
     userInfo.to_csv(filepath, index=False, sep=',')
+    with open('userInfo.csv', 'r', encoding='utf-8')as isfile:
+        # 调用csv中的DictReader函数直接获取数据为字典形式
+        reader = csv.DictReader(isfile)
+        # 创建一个counts计数一下 看自己一共添加了了多少条数据
+        counts = 0
+        for each in reader:
+            # 将数据中需要转换类型的数据转换类型。原本全是字符串（string）。
+            each['username'] = str(each['username'])
+            each['password'] = str(each['password'])
+            each['bankCardNumber'] = str(each['bankCardNumber'])
+            each['bankName'] = str(each['bankName'])
+            each['accountStatus'] = str(each['accountStatus'])
+            each['accountBalance'] = float(each['accountBalance'])
+            c.insert(each)
+    getDataFromTheDatabase()
 
 
 def checkBalances(username):
@@ -145,14 +182,14 @@ def systemInterface():
     print('                 输入0-退出ATM机               ')
     print('------------------------------------------------')
     functionButtons = input('请输入您要使用的功能:')
-
-    while True:
+    flag_1 = True
+    while flag_1:
         if functionButtons.isdigit():
             int_functionButtons = int(functionButtons)
             if 5 >= int_functionButtons >= 0:
                 if int_functionButtons == 0:
                     print('谢谢您的使用~祝您生活愉快~')
-                    break
+                    flag_1 = False
                 elif int_functionButtons == 1:
                     checkBalances(username)
                     systemInterface()
@@ -178,4 +215,7 @@ def systemInterface():
 
 
 if __name__ == '__main__':
+    getDataFromTheDatabase()
+    fileDirectory = 'userInfo.csv'
+    userInfo = pd.read_csv(fileDirectory)
     logIn()
