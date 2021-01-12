@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="MongoDB - @localhost">
+  <database-model serializer="dbm" dbms="MONGO" family-id="MONGO" format-version="4.20">
+    <root id="1">
+      <ServerVersion>4.4.0</ServerVersion>
+    </root>
+    <schema id="2" parent="1" name="2020-08-26"/>
+    <schema id="3" parent="1" name="2020-10-29"/>
+    <schema id="4" parent="1" name="2020-11-03"/>
+    <schema id="5" parent="1" name="2021-01-11"/>
+    <schema id="6" parent="1" name="ATM"/>
+    <schema id="7" parent="1" name="admin"/>
+    <schema id="8" parent="1" name="config"/>
+    <schema id="9" parent="1" name="local"/>
+    <table id="10" parent="6" name="userInfo"/>
+    <column id="11" parent="10" name="_id">
+      <DataType>String(0)|12s</DataType>
+    </column>
+    <column id="12" parent="10" name="accountBalance">
+      <Position>1</Position>
+      <DataType>Double(0)|8s</DataType>
+    </column>
+    <column id="13" parent="10" name="accountStatus">
+      <Position>2</Position>
+      <DataType>String(0)|12s</DataType>
+    </column>
+    <column id="14" parent="10" name="bankCardNumber">
+      <Position>3</Position>
+      <DataType>String(0)|12s</DataType>
+    </column>
+    <column id="15" parent="10" name="bankName">
+      <Position>4</Position>
+      <DataType>String(0)|12s</DataType>
+    </column>
+    <column id="16" parent="10" name="password">
+      <Position>5</Position>
+      <DataType>String(0)|12s</DataType>
+    </column>
+    <column id="17" parent="10" name="username">
+      <Position>6</Position>
+      <DataType>String(0)|12s</DataType>
+    </column>
+  </database-model>
+</dataSource>
