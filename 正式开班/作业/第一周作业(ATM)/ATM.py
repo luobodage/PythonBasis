@@ -41,6 +41,7 @@ def logIn():
         global username
         # 输入用户名
         username = input("请输入用户名:")
+        # print([i for i in userInfo[userInfo.username == username]['password']])
         # 如果用户名在数据文件里
         if username in list(userInfo['username']):
             # 判断用户是否冻结 也就是accountStatus参数是否为0
@@ -54,7 +55,7 @@ def logIn():
         password = input("请输入账户密码:")
         # 验证密码
         for i in userInfo['username']:
-            if str([i for i in userInfo[userInfo.username == i]['password']][0]) == password:
+            if str([i for i in userInfo[userInfo.username == username]['password']][0]) == password:
                 # 如果密码验证成功 返回True
                 flag = True
             # 跳出循环
@@ -209,7 +210,8 @@ def systemInterface():
             int_functionButtons = int(functionButtons)
             if 5 >= int_functionButtons >= 0:
                 if int_functionButtons == 0:
-                    flag_1 = False
+                    # flag_1 = False
+                    break
                     print('谢谢您的使用~祝您生活愉快~')
                 elif int_functionButtons == 1:
                     checkBalances(username)
