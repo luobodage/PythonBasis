@@ -29,7 +29,7 @@ def remove(str):
 
 if __name__ == '__main__':
     print(all_file)
-    dir_list('E:\\')
+    dir_list('F:\\')
     remove('._')
-    dir_list('E:\\')
+    dir_list('F:\\')
     print(all_file)
