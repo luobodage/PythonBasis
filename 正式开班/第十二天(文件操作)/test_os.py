@@ -37,15 +37,17 @@ import os
 
 # 3.删除一个给定的目录,这上目录不为空目录,使用递归来实现
 
-# def removeDirectory(path):
-#     filenames = os.listdir(path)
-#     for filename in filenames:
-#         filepath = os.path.join(path,filename)
-#         if os.path.isdir(filepath):
-#             removeDirectory(filepath)
-#         else:
-#             os.remove(filepath)
-# removeDirectory('data1')
+def removeDirectory(path):
+    filenames = os.listdir(path)
+    for filename in filenames:
+        filepath = os.path.join(path,filename)
+        if os.path.isdir(filepath):
+            removeDirectory(filepath)
+        else:
+            os.remove(filepath)
+removeDirectory('data1')
+os.removedirs('data1')
+
 # 这个代码主要删除的是目录下的所有文件
 
 # 4.写一个方法,可以复制一个文件
