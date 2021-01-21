@@ -3,7 +3,7 @@
 
 # author: luoboovo
 # contact: fuyu16032001@gmail.com
-# datetime: 2021/1/21 18:06
+# datetime: 2021/1/21 19:20
 # software: PyCharm
 #         =    =     =
 #          =   =   =
@@ -20,20 +20,18 @@
 #          =      =
 #           =    =
 #              =
-
 import socket
 
 
-def main():
-    udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-
-    dest_addr = ('192.168.56.1', 8080)
-    # 发送内容 以及发送ip
-    whatYouWantToSend = input('请输入你要发送的内容:')
-    udp_socket.sendto(whatYouWantToSend.encode('utf8'), dest_addr)
-
-    udp_socket.close()
+def receivePicture():
+    udp_data = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    local_addrs = ('', 8800)
+    udp_data.bind(local_addrs)
+    reva_data = udp_data.recvfrom(4096)
+    with open('2.jpeg', 'wb') as f:
+        f.write(reva_data[0])
+    udp_data.close()
 
 
 if __name__ == '__main__':
-    main()
+    receivePicture()
