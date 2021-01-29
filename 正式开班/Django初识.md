@@ -82,3 +82,14 @@ python manage.py createsuperuser
 ##### (3).配置文件settings.py解读
 
 调试模式，应用注册，第三方库配置，国际化等
+
+##### 设置中文 在setting.py设置
+
+~~~python
+#把英文改为中文
+LANGUAGE_CODE = 'zh-hans'
+ 
+#把国际时区改为中国时区
+TIME_ZONE = 'Asia/Shanghai'
+~~~
+
