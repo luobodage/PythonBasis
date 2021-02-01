@@ -56,10 +56,29 @@ def login_mysql(user, password):
         user=user,
         password=password, )
     cursor = conn.cursor()
-    # cursor.execute('CREATE database house')
-    # cursor.execute('CREATE database house')
+    cursor.execute('CREATE database house')
     cursor.execute('use house')
     return cursor, conn
+
+
+def reboot_mysql(user, password):
+    """
+    mysql登录
+    :param user: 用户名
+    :param password: 密码
+    :return: 返回一个游标
+    """
+    conn = pymysql.connect(
+        host='localhost',
+        port=3306,
+        charset='utf8',
+        cursorclass=pymysql.cursors.DictCursor,  # 指定类型
+        user=user,
+        password=password, )
+    cursor = conn.cursor()
+    cursor.execute('use house')
+    return cursor, conn
+
 
 
 def create_database():
@@ -67,7 +86,7 @@ def create_database():
     创建数据库
     :return:
     """
-    cursor, conn = login_mysql('root', '1334')
+    cursor, conn = reboot_mysql('root', '1334')
 
     try:
         cursor.execute("""
@@ -89,7 +108,7 @@ def create_database():
 
 
 def readAndWriteData():
-    cursor, conn = login_mysql('root', '1334')
+    cursor, conn = reboot_mysql('root', '1334')
     with open('housing.csv', 'r') as csv:
         data = csv.read()
         print(data.split('\n'))
