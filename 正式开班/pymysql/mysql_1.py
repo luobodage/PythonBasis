@@ -2,7 +2,7 @@
 
 import pymysql
 import pandas as pd
-import time
+
 
 # author: luoboovo
 # contact: fuyu16032001@gmail.com

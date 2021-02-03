@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>1</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<h1 id='teacher' style="background: red;width: 300px;height: 100px;color: whitesmoke">梁志超！</h1>
+<input type="button" value="别手贱点这个奥！" onclick="hello1();">
+<script>
+    function hello1() {
+        // body...
+        var a = "骂我和小菜儿似得";
+        alert(a);
+        var oDiv = document.getElementById('teacher');
+        alert(oDiv.innerText);
+        alert(oDiv.id);
+        alert(oDiv.style.background);
+        if (oDiv.style.background === "red") {
+            oDiv.style.backdground = "blue";
+        }
+    }
+
+
+</script>
+</body>
+
+
+</html>
