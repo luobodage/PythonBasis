@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>初识Ajax</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<table>
+    <thead>
+        <tr>
+            <td>序号</td>
+            <td>英文</td>
+            <td>数字</td>
+        </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+<input id="count" type="text"><button id="submit">提交</button>
+</body>
+<script>
+    $("#submit").click(function(){
+        // $('tbody').empty();//清空我的请求结果
+        $.ajax({
+            url:'http://jiekou.laiyue.work',//请求地址
+            type:'get',//请求方式 post get
+            dataType:'json', //数据格式
+            data:{  //data 向后台 传输数据
+                mysize:20  //来十条数据
+            },
+            success:function (response) {//请求成功响应结果
+                console.log(response)
+                for(var i = 0; i<response.data1.length;i++){
+                    var htmlStr = '<tr>\n' +
+                        '        <td>'+(i+1)+'</td>\n' +
+                        '        <td>'+response.data2[i]+'</td>\n' +
+                        '        <td>'+response.data1[i]+'</td>\n' +
+                        '    </tr>'
+                    $('tbody').append(htmlStr);
+                }
+            }
+        });
+    });
+</script>
+</html>
