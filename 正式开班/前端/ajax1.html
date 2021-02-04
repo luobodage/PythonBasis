@@ -4,44 +4,74 @@
     <meta charset="UTF-8">
     <title>初识Ajax</title>
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.0.1/echarts.min.js"></script>
 </head>
 <body>
 <table>
     <thead>
-        <tr>
-            <td>序号</td>
-            <td>英文</td>
-            <td>数字</td>
-        </tr>
+    <tr>
+        <td>序号</td>
+        <td>英文</td>
+        <td>数字</td>
+    </tr>
     </thead>
     <tbody>
 
     </tbody>
 </table>
-<input id="count" type="text"><button id="submit">提交</button>
+<input id="count" type="text">
+<button id="submit">提交</button>
+<div id="main" style="width: 600px;height:400px;"></div>
 </body>
 <script>
-    $("#submit").click(function(){
+    $("#submit").click(function () {
+
         // $('tbody').empty();//清空我的请求结果
         $.ajax({
-            url:'http://jiekou.laiyue.work',//请求地址
-            type:'get',//请求方式 post get
-            dataType:'json', //数据格式
-            data:{  //data 向后台 传输数据
-                mysize:20  //来十条数据
+            url: 'http://jiekou.laiyue.work',//请求地址
+            type: 'post',//请求方式 post get
+            dataType: 'json', //数据格式
+            data: {  //data 向后台 传输数据
+                mysize: 20  //来十条数据
             },
-            success:function (response) {//请求成功响应结果
+            success: function (response) {//请求成功响应结果
                 console.log(response)
-                for(var i = 0; i<response.data1.length;i++){
+                for (var i = 0; i < response.data1.length; i++) {
                     var htmlStr = '<tr>\n' +
-                        '        <td>'+(i+1)+'</td>\n' +
-                        '        <td>'+response.data2[i]+'</td>\n' +
-                        '        <td>'+response.data1[i]+'</td>\n' +
+                        '        <td>' + (i + 1) + '</td>\n' +
+                        '        <td>' + response.data2[i] + '</td>\n' +
+                        '        <td>' + response.data1[i] + '</td>\n' +
                         '    </tr>'
                     $('tbody').append(htmlStr);
                 }
+                var myChart = echarts.init(document.getElementById('main'));
+
+                // 指定图表的配置项和数据
+                var option = {
+                    title: {
+                        text: '柱状图'
+                    },
+                    tooltip: {},
+                    legend: {
+                        data: ['销量']
+                    },
+                    xAxis: {
+                        data: response.data2
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    series: [{
+                        type: 'bar',
+                        data: response.data1
+                    }]
+                };
+
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
             }
         });
+
     });
 </script>
 </html>

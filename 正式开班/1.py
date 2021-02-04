@@ -1,6 +1,7 @@
 # -*- coding: UTF-8 -*-
 
 import requests
+
 # author: luoboovo
 # contact: fuyu16032001@gmail.com
 # datetime: 2021/2/4 8:48
@@ -20,7 +21,9 @@ import requests
 #          =      =
 #           =    =
 #              =
+data = {
+    'mysize': 100
+}
 
-
-a = requests.get(url='http://jiekou.laiyue.work').json()
+a = requests.post(url='http://jiekou.laiyue.work',data=data).json()
 print(a)
