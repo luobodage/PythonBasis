@@ -60,11 +60,6 @@ from pyecharts.globals import SymbolType
 from pyecharts import options as opts
 from pyecharts.charts import Line
 
-
-week_name_list = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"]
-high_temperature = [11, 11, 15, 13, 12, 13, 10]
-low_temperature = [1, -2, 2, 5, 3, 2, 0]
-
 (
     Line(init_opts=opts.InitOpts(width="1600px", height="800px"))
         .add_xaxis(xaxis_data=list(data['id']))
