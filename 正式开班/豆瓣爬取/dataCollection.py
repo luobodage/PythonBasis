@@ -35,17 +35,18 @@ def dataCollection(page):
     id = []
     grade = []
     content_p = []
+    headers = {
+        'Accept-Encoding': 'gzip, deflate, sdch',
+        'Accept-Language': 'en-US,en;q=0.8',
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+        'Referer': 'http://www.wikipedia.org/',
+        'Connection': 'keep-alive',
+    }
     # 二十页
     for i in range(page):
         url = f'https://movie.douban.com/subject/35068230/comments?start={i * 20}&limit=20&status=P&sort=new_score'
-        headers = {
-            'Accept-Encoding': 'gzip, deflate, sdch',
-            'Accept-Language': 'en-US,en;q=0.8',
-            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36',
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-            'Referer': 'http://www.wikipedia.org/',
-            'Connection': 'keep-alive',
-        }
+
         content = requests.get(
             url=url,
             headers=headers
