@@ -4,6 +4,9 @@ import pymongo
 import lxml.etree as le
 import pandas as pd
 
+proxies = {
+    'http:':''
+}
 
 # author: luoboovo
 # contact: fuyu16032001@gmail.com
@@ -81,3 +84,6 @@ def convertData(page):
 if __name__ == '__main__':
     # dataCollection()
     convertData(20)
+
+print([f'https://movie.douban.com/subject/35068230/comments?start={i * 20}&limit=20&status=P&sort=new_score' for i in
+       range(10)])

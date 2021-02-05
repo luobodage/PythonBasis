@@ -1,10 +1,10 @@
 # -*- coding: UTF-8 -*-
 
-import snownlp
-import pandas as pd
+import requests
+
 # author: luoboovo
 # contact: fuyu16032001@gmail.com
-# datetime: 2021/2/5 11:00
+# datetime: 2021/2/5 14:37
 # software: PyCharm
 #         =    =     =
 #          =   =   =
@@ -21,14 +21,12 @@ import pandas as pd
 #          =      =
 #           =    =
 #              =
-
-print(snownlp.SnowNLP("我真的好爱你").sentiments)
-# values = []
-# data = pd.read_csv('data.csv')
-# for i in data['content']:
-#     values.append(snownlp.SnowNLP(i).sentiments)
-#
-# data['values'] = values
-# data.to_csv('data01.csv')
-#
-# print(data.head())
+url = 'http://152.136.152.189:39999/'
+data = {
+    'mysize': 6
+}
+proxies = {
+    'http': '60.167.134.11:8888'
+}
+content = requests.post(url=url, data=data, proxies=proxies, timeout=10).json()
+print(content)
