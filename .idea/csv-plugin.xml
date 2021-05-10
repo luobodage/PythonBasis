@@ -3,6 +3,34 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
+        <entry key="C:\Users\13342\AppData\Local\Programs\Python\Python39\Lib\site-packages\_pytest\_argcomplete.py">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="C:\Users\13342\AppData\Local\Programs\Python\Python39\Lib\unittest\case.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="C:\Users\13342\AppData\Local\Programs\Python\Python39\Lib\unittest\main.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="C:\Users\13342\AppData\Roaming\JetBrains\PyCharm2020.3\scratches\test0111.py">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\正式开班\Scrapy爬虫\yiwugou\yiwugou\spiders\ywg.py">
           <value>
             <Attribute>
@@ -11,6 +39,13 @@
           </value>
         </entry>
         <entry key="\正式开班\接口测试\20210416.py">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\正式开班\接口测试\unittest01.py">
           <value>
             <Attribute>
               <option name="separator" value=":" />
