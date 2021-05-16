@@ -19,14 +19,3 @@
 #          =      =
 #           =    =
 #              =
-def DoWork1(x, y):
-    if x > 8 and y > 5:
-        if x > 16 or y > 10:
-            return '引导语句三！！'
-        else:
-            return '啥都没有！！！！'
-    else:
-        if x > 0 or y > 0:
-            return '引导语句二！！'
-        else:
-            return '引导语句一！！'

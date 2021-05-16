@@ -17,6 +17,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\正式开班\测试\unittest测试\test_data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\正式开班\第七天\log.csv">
           <value>
             <Attribute>

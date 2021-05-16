@@ -19,14 +19,18 @@
 #          =      =
 #           =    =
 #              =
-def DoWork1(x, y):
-    if x > 8 and y > 5:
-        if x > 16 or y > 10:
-            return '引导语句三！！'
+import pyforest
+
+
+def DoWord(iRecordNum, iType):
+    x, y = 0, 0
+    while iRecordNum < 0:
+        if iType == 0:
+            x = y + 2
         else:
-            return '啥都没有！！！！'
-    else:
-        if x > 0 or y > 0:
-            return '引导语句二！！'
-        else:
-            return '引导语句一！！'
+            if iType == 1:
+                x = y + 10
+            else:
+                x = y + 20
+        iRecordNum -= 1
+
