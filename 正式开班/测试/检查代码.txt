@@ -1,0 +1,16 @@
+检查代码
+sonar-scanner.bat -D"sonar.projectKey=luobo_test" -D"sonar.sources=." -D"sonar.host.url=http://127.0.0.1:9000" -D"sonar.login=3edb0805d9713becabc661124f02ef3d195436d8"
+令牌
+ 3edb0805d9713becabc661124f02ef3d195436d8
+
+
+docker run --name sonar --link db -e SONARQUBE_JDBC_USERNAME=sonar -e SONARQUBE_JDBC_PASSWORD=sonar -p 9000:9000 -d sonarqube
+
+
+docker run --name db -p 5432:5432 -e POSTGRES_USER=sonar -e POSTGRES_PASSWORD=sonar -d postgres
+
+
+docker run --name sonar -e SONARQUBE_JDBC_USERNAME=root -e SONARQUBE_JDBC_PASSWORD=root  -e SONARQUBE_JDBC_URL=jdbc:mysql://123.56.16.209:3306/sonar -p 9000:9000 -d sonarqube
+
+
+docker run --name sonar -e SONARQUBE_JDBC_USERNAME=postgres -e SONARQUBE_JDBC_PASSWORD=1334  -e SONARQUBE_JDBC_URL=jdbc:postgres://123.56.16.209:5432/sonar -p 9000:9000 -d sonarqube
