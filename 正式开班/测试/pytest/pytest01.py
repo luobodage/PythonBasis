@@ -19,6 +19,7 @@
 #          =      =
 #           =    =
 #              =
+import random
 import sys
 
 import pytest
@@ -46,18 +47,24 @@ class TestClass(object):
     def test_in02(self):
         assert 'luobo' * 20 == 'luobo' * 30
 
-    @pytest.mark.webtest()
+    @pytest.mark.webtest
     def test_web01(self):
         assert 'web' == 'web1'
 
-    @pytest.mark.Androidtest()
+    @pytest.mark.Androidtest
+    @pytest.mark.last
     def test_app01(self):
         assert 'android' == 'Android'
 
-    @pytest.mark.iostest()
+    @pytest.mark.iostest
     def test_ios01(self):
         assert 'ios' == 'Android'
 
+    def test_random01(self):
+        result = random.randint(1, 10)
+        pytest.assume(1 == 2)
+        print('随机值为:', result)
+        assert result == 9
     # # 测试不包含
     # def test_not_in(self):
     #     a = 'Hello'
@@ -66,4 +73,5 @@ class TestClass(object):
 
 
 if __name__ == '__main__':
-    pytest.main(['-s', 'pytest01.py', '-m', 'Androidtest'])
+    # pytest.main(['-s', 'pytest01.py', '-m', 'Androidtest'])
+    pytest.main(['-s', 'pytest01.py'])
