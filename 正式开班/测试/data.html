@@ -1,0 +1,996 @@
+<html lang="zh-cn" class="os-windows screen-tablet device-mobile not-firefox">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <title>组织视图首页-部门结构 - 禅道</title>
+    <script>window.config = {
+        "webRoot": "\/zentao\/",
+        "debug": false,
+        "appName": "",
+        "cookieLife": 30,
+        "requestType": "PATH_INFO",
+        "requestFix": "-",
+        "moduleVar": "m",
+        "methodVar": "f",
+        "viewVar": "t",
+        "defaultView": "html",
+        "themeRoot": "\/zentao\/theme\/",
+        "currentModule": "company",
+        "currentMethod": "browse",
+        "clientLang": "zh-cn",
+        "requiredFields": "",
+        "router": "\/zentao\/index.php",
+        "save": "\u4fdd\u5b58",
+        "runMode": "",
+        "timeout": 30000,
+        "pingInterval": ""
+    };
+    window.lang = {
+        "submitting": "\u7a0d\u5019...",
+        "save": "\u4fdd\u5b58",
+        "expand": "\u5c55\u5f00\u5168\u90e8",
+        "timeout": "\u8fde\u63a5\u8d85\u65f6\uff0c\u8bf7\u68c0\u67e5\u7f51\u7edc\u73af\u5883\uff0c\u6216\u91cd\u8bd5\uff01"
+    };
+
+    </script>
+    <script>config.onlybody = "no";</script>
+    <link rel="stylesheet" href="/zentao/theme/default/zh-cn.default.css?v=12.0" type="text/css" media="screen">
+    <script src="/zentao/js/all.js?v=12.0"></script>
+    <style>#titlebar {
+        display: none
+    }
+
+    form {
+        position: relative
+    }
+
+    #querybox {
+        float: none !important;
+        width: auto;
+    }
+
+    #moreOrLite {
+        right: 10px !important
+    }
+
+    #userList tbody td {
+        white-space: nowrap;
+        overflow: hidden
+    }
+    </style>
+    <link rel="icon" href="/zentao/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/zentao/favicon.ico" type="image/x-icon">
+    <!--[if lt IE 10]>
+    <script src='/zentao/js/jquery/placeholder/min.js?v=12.0'></script>
+    <![endif]-->
+</head>
+<body class="m-company-browse">
+<script>
+    var chooseUsersToMail = '选择要发信通知的用户...';
+    $(document).ready(function () {
+        $("#mailto").attr('data-placeholder', chooseUsersToMail);
+        $("#mailto, #productID").chosen();
+    });
+</script>
+<header id="header">
+    <div id="mainHeader">
+        <div class="container">
+            <hgroup id="heading">
+                <h1 id="companyname" title="易软天创"><a href="/zentao/index.html">易软天创</a>
+                </h1>
+            </hgroup>
+            <nav id="navbar">
+                <ul class="nav nav-default">
+                    <li data-id="my"><a href="/zentao/my/"><span> 我的地盘</span></a></li>
+                    <li data-id="product"><a href="/zentao/product-index-no.html">产品</a></li>
+                    <li data-id="project"><a href="/zentao/project-index-no.html">项目</a></li>
+                    <li data-id="qa"><a href="/zentao/qa/">测试</a></li>
+                    <li class="divider"></li>
+                    <li data-id="repo"><a href="/zentao/repo-log.html">代码</a></li>
+                    <li data-id="doc"><a href="/zentao/doc/">文档</a></li>
+                    <li data-id="report"><a href="/zentao/report/">统计</a></li>
+                    <li class="divider"></li>
+                    <li class="active" data-id="company"><a href="/zentao/company/" class="active">组织</a></li>
+                    <li data-id="admin"><a href="/zentao/admin/">后台</a></li>
+                </ul>
+            </nav>
+            <div id="toolbar">
+                <div id="userMenu">
+                    <div id="searchbox">
+                        <div class="input-group">
+                            <div class="input-group-btn"><a data-toggle="dropdown" class="btn btn-link"
+                                                            style="border-radius: 2px 0px 0px 2px;"><span
+                                    id="searchTypeName">Bug</span> <span class="caret"></span></a><input type="hidden"
+                                                                                                         name="searchType"
+                                                                                                         id="searchType"
+                                                                                                         value="bug">
+                                <ul id="searchTypeMenu" class="dropdown-menu">
+                                    <li class="selected"><a href="javascript:$.setSearchType(&quot;bug&quot;);"
+                                                            data-value="bug">Bug</a></li>
+                                    <li><a href="javascript:$.setSearchType(&quot;story&quot;);"
+                                           data-value="story">需求</a></li>
+                                    <li><a href="javascript:$.setSearchType(&quot;task&quot;);" data-value="task">任务</a>
+                                    </li>
+                                    <li><a href="javascript:$.setSearchType(&quot;testcase&quot;);"
+                                           data-value="testcase">用例</a></li>
+                                    <li><a href="javascript:$.setSearchType(&quot;project&quot;);" data-value="project">项目</a>
+                                    </li>
+                                    <li><a href="javascript:$.setSearchType(&quot;product&quot;);" data-value="product">产品</a>
+                                    </li>
+                                    <li><a href="javascript:$.setSearchType(&quot;user&quot;);" data-value="user">用户</a>
+                                    </li>
+                                    <li><a href="javascript:$.setSearchType(&quot;build&quot;);"
+                                           data-value="build">版本</a></li>
+                                    <li><a href="javascript:$.setSearchType(&quot;release&quot;);" data-value="release">发布</a>
+                                    </li>
+                                    <li><a href="javascript:$.setSearchType(&quot;productplan&quot;);"
+                                           data-value="productplan">产品计划</a></li>
+                                    <li><a href="javascript:$.setSearchType(&quot;testtask&quot;);"
+                                           data-value="testtask">测试单</a></li>
+                                    <li><a href="javascript:$.setSearchType(&quot;doc&quot;);" data-value="doc">文档</a>
+                                    </li>
+                                    <li><a href="javascript:$.setSearchType(&quot;caselib&quot;);" data-value="caselib">用例库</a>
+                                    </li>
+                                    <li><a href="javascript:$.setSearchType(&quot;testreport&quot;);"
+                                           data-value="testreport">测试报告</a></li>
+                                </ul>
+                            </div>
+                            <input id="searchInput" class="form-control search-input" type="search"
+                                   onclick="this.value=&quot;&quot;" onkeydown="if(event.keyCode==13) $.gotoObject();"
+                                   placeholder="编号(ctrl+g)"
+                                   style="border-radius: 0px 2px 2px 0px; border-left-color: transparent;"></div>
+                        <a href="javascript:$.gotoObject();" class="btn btn-link" id="searchGo">GO!</a></div>
+                    <ul id="userNav" class="nav nav-default">
+                        <li><a class="dropdown-toggle" data-toggle="dropdown"><span class="user-name">admin</span><span
+                                class="caret"></span></a>
+                            <ul class="dropdown-menu pull-right">
+                                <li class="user-profile-item"><a href="/zentao/my-profile.html" class=" no-role">
+                                    <div class="avatar avatar bg-secondary avatar-circle">A</div>
+                                    <div class="user-profile-name">admin</div>
+                                    <div class="user-profile-role"></div>
+                                </a></li>
+                                <li class="divider"></li>
+                                <li><a href="/zentao/my-profile.html">个人档案</a>
+                                </li>
+                                <li><a href="/zentao/my-changepassword.html?onlybody=yes" class="iframe"
+                                       data-width="500">更改密码</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li class="dropdown-submenu"><a href="javascript:;">主题</a>
+                                    <ul class="dropdown-menu pull-left">
+                                        <li class="selected"><a href="javascript:selectTheme(&quot;default&quot;);"
+                                                                data-value="default">禅道蓝（默认）</a></li>
+                                        <li><a href="javascript:selectTheme(&quot;green&quot;);"
+                                               data-value="green">叶兰绿</a></li>
+                                        <li><a href="javascript:selectTheme(&quot;red&quot;);" data-value="red">赤诚红</a>
+                                        </li>
+                                        <li><a href="javascript:selectTheme(&quot;purple&quot;);" data-value="purple">玉烟紫</a>
+                                        </li>
+                                        <li><a href="javascript:selectTheme(&quot;pink&quot;);"
+                                               data-value="pink">芙蕖粉</a></li>
+                                        <li><a href="javascript:selectTheme(&quot;blackberry&quot;);"
+                                               data-value="blackberry">露莓黑</a></li>
+                                        <li><a href="javascript:selectTheme(&quot;classic&quot;);" data-value="classic">经典蓝</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu"><a href="javascript:;">Language</a>
+                                    <ul class="dropdown-menu pull-left">
+                                        <li class="selected"><a href="javascript:selectLang(&quot;zh-cn&quot;);">简体</a>
+                                        </li>
+                                        <li><a href="javascript:selectLang(&quot;zh-tw&quot;);">繁體</a></li>
+                                        <li><a href="javascript:selectLang(&quot;en&quot;);">English</a></li>
+                                        <li><a href="javascript:selectLang(&quot;de&quot;);">Deutsch</a></li>
+                                        <li><a href="javascript:selectLang(&quot;fr&quot;);">Français</a></li>
+                                    </ul>
+                                </li>
+                                <li class="custom-item"><a
+                                        href="/zentao/custom-ajaxMenu-company-browse.html?onlybody=yes"
+                                        data-toggle="modal" data-type="iframe" data-icon="cog"
+                                        data-width="80%">自定义导航</a></li>
+                                <li class="divider"></li>
+                                <li class="dropdown-submenu"><a data-toggle="dropdown">帮助</a>
+                                    <ul class="dropdown-menu pull-left">
+                                        <li><a href="/zentao/tutorial-start.html" class="iframe"
+                                               data-class-name="modal-inverse" data-width="800" data-headerless="true"
+                                               data-backdrop="true" data-keyboard="true">新手教程</a>
+                                        </li>
+                                        <li><a href="https://www.zentao.net/book/zentaopmshelp.html?fullScreen=zentao"
+                                               class="open-help-tab" target="_blank">手册</a>
+                                        </li>
+                                        <li><a href="/zentao/misc-changeLog.html" class="iframe" data-width="800"
+                                               data-headerless="true" data-backdrop="true" data-keyboard="true">修改日志</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a href="/zentao/misc-about.html" class="about iframe" data-width="1050"
+                                       data-headerless="true" data-backdrop="true" data-keyboard="true"
+                                       data-class="modal-about">关于禅道</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li><a href="/zentao/user-logout.html">退出</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="subHeader">
+        <div class="container">
+            <div id="pageNav" class="btn-toolbar"></div>
+            <nav id="subNavbar">
+                <ul class="nav nav-default" style="position: static;">
+                    <li class=" active" data-id="browseUser"><a href="/zentao/company-browse.html">用户</a>
+                    </li>
+                    <li class=" " data-id="dept"><a href="/zentao/dept-browse.html">部门</a>
+                    </li>
+                    <li class=" " data-id="browseGroup"><a href="/zentao/group-browse.html">权限</a>
+                    </li>
+                    <li class=" " data-id="dynamic"><a href="/zentao/company-dynamic.html">动态</a>
+                    </li>
+                    <li class=" " data-id="view"><a href="/zentao/company-view.html">公司</a>
+                    </li>
+                </ul>
+            </nav>
+            <div id="pageActions">
+                <div class="btn-toolbar"></div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main id="main" class="in">
+    <div class="container">
+        <script>deptID = 0;</script>
+        <script>confirmDelete = "\u60a8\u786e\u5b9a\u5220\u9664\u8be5\u7528\u6237\u5417\uff1f";</script>
+        <div id="mainMenu" class="clearfix">
+            <div id="sidebarHeader">
+                <div class="title">
+                    部门结构
+                </div>
+            </div>
+            <div class="btn-toolbar pull-left">
+                <a class="btn btn-link querybox-toggle" id="bysearchTab"><i class="icon icon-search muted"></i> 搜索</a>
+            </div>
+            <div class="btn-toolbar pull-right">
+                <a href="/zentao/user-batchCreate-0.html" class="btn btn-secondary"><i class="icon icon-plus"></i>
+                    批量添加用户</a>
+                <a href="/zentao/user-create-0.html" class="btn btn-primary"><i class="icon icon-plus"></i> 添加用户</a>
+            </div>
+        </div>
+        <div id="mainContent" class="main-row fade in">
+            <div class="side-col" id="sidebar">
+                <div class="sidebar-toggle"><i class="icon icon-angle-left" style="top: 343.5px;"></i></div>
+                <div class="cell">
+                    <ul class="tree" data-ride="tree" data-name="tree-dept" data-idx="0">
+                        <li data-idx="1" data-id="1"><a href="/zentao/company-browse-1.html" id="dept1">开发部</a>
+
+                        </li>
+                        <li data-idx="2" data-id="2"><a href="/zentao/company-browse-2.html" id="dept2">测试部</a>
+
+                        </li>
+                        <li data-idx="3" data-id="3"><a href="/zentao/company-browse-3.html" id="dept3">新的</a>
+
+                        </li>
+                        <li data-idx="4" data-id="4"><a href="/zentao/company-browse-4.html" id="dept4">新的部门</a>
+
+                        </li>
+                        <li data-idx="5" data-id="5"><a href="/zentao/company-browse-5.html" id="dept5">新的</a>
+
+                        </li>
+                        <li data-idx="6" data-id="6"><a href="/zentao/company-browse-8.html" id="dept8">新的</a>
+
+                        </li>
+                        <li data-idx="7" data-id="7"><a href="/zentao/company-browse-6.html" id="dept6">fiddler add</a>
+
+                        </li>
+                        <li data-idx="8" data-id="8"><a href="/zentao/company-browse-11.html" id="dept11">fiddler
+                            app</a>
+
+                        </li>
+                        <li data-idx="9" data-id="9"><a href="/zentao/company-browse-12.html" id="dept12">fiddlerapp</a>
+
+                        </li>
+                    </ul>
+                    <div class="text-center">
+                        <a href="/zentao/dept-browse.html" class="btn btn-info btn-wide">维护部门</a>
+                    </div>
+                </div>
+            </div>
+            <div class="main-col">
+                <div class="cell" id="queryBox" data-module="user"></div>
+                <form class="main-table table-user" data-ride="table" action="/zentao/user-batchEdit-0.html"
+                      method="post" id="userListForm">
+                    <table class="table has-sort-head with-footer-fixed" id="userList">
+                        <thead>
+                        <tr>
+                            <th class="c-id" title="ID">
+                                <div class="checkbox-primary check-all" title="全选">
+                                    <label></label>
+                                </div>
+                                <a href="/zentao/company-browse-0-bydept-id_asc-50-20.html" class="sort-down">ID</a>
+                            </th>
+                            <th title="真实姓名"><a href="/zentao/company-browse-0-bydept-realname_asc-50-20.html"
+                                                class="header">真实姓名</a>
+                            </th>
+                            <th title="用户名"><a href="/zentao/company-browse-0-bydept-account_asc-50-20.html"
+                                               class="header">用户名</a>
+                            </th>
+                            <th class="w-90px" title="职位"><a href="/zentao/company-browse-0-bydept-role_asc-50-20.html"
+                                                             class="header">职位</a>
+                            </th>
+                            <th class="c-url" title="邮箱"><a href="/zentao/company-browse-0-bydept-email_asc-50-20.html"
+                                                            class="header">邮箱</a>
+                            </th>
+                            <th class="c-type" title="性别"><a
+                                    href="/zentao/company-browse-0-bydept-gender_asc-50-20.html" class="header">性别</a>
+                            </th>
+                            <th title="电话"><a href="/zentao/company-browse-0-bydept-phone_asc-50-20.html"
+                                              class="header">电话</a>
+                            </th>
+                            <th title="QQ"><a href="/zentao/company-browse-0-bydept-qq_asc-50-20.html"
+                                              class="header">QQ</a>
+                            </th>
+                            <th class="c-date" title="最后登录"><a
+                                    href="/zentao/company-browse-0-bydept-last_asc-50-20.html" class="header">最后登录</a>
+                            </th>
+                            <th class="w-90px" title="访问次数"><a
+                                    href="/zentao/company-browse-0-bydept-visits_asc-50-20.html" class="header">访问次数</a>
+                            </th>
+                            <th class="c-actions" title="操作">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="c-id">
+                                <div class="checkbox-primary"><input type="checkbox" name="users[]" value="admin"
+                                                                     id="usersadmin"> <label for="usersadmin"></label>
+                                </div>
+                                <a href="/zentao/user-view-admin.html">001</a>
+                            </td>
+                            <td><a href="/zentao/user-view-admin.html" title="admin">admin</a>
+                            </td>
+                            <td>admin</td>
+                            <td class="w-90px" title=""></td>
+                            <td class="c-url" title=""></td>
+                            <td class="c-type">女</td>
+                            <td></td>
+                            <td></td>
+                            <td class="c-date">2021-05-21</td>
+                            <td class="c-num text-center">1001</td>
+                            <td class="c-actions">
+                                <button type="button" class="disabled btn "><i
+                                        class="icon-user-unlock disabled icon-unlock" title="解锁用户"></i></button>
+                                <a href="/zentao/user-edit-1-company.html" class="btn " title="编辑用户"><i
+                                        class="icon-common-edit icon-edit"></i></a>
+                                <a href="/zentao/user-delete-1.html" title="删除用户" class="btn disabled"><i
+                                        class="icon-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="c-id">
+                                <div class="checkbox-primary"><input type="checkbox" name="users[]" value="fuqianyu"
+                                                                     id="usersfuqianyu"> <label
+                                        for="usersfuqianyu"></label></div>
+                                <a href="/zentao/user-view-fuqianyu.html">002</a>
+                            </td>
+                            <td><a href="/zentao/user-view-fuqianyu.html" title="傅乾雨">傅乾雨</a>
+                            </td>
+                            <td>fuqianyu</td>
+                            <td class="w-90px" title="测试">测试</td>
+                            <td class="c-url" title=""></td>
+                            <td class="c-type">男</td>
+                            <td></td>
+                            <td></td>
+                            <td class="c-date">2021-05-07</td>
+                            <td class="c-num text-center">1</td>
+                            <td class="c-actions">
+                                <button type="button" class="disabled btn "><i
+                                        class="icon-user-unlock disabled icon-unlock" title="解锁用户"></i></button>
+                                <a href="/zentao/user-edit-2-company.html" class="btn " title="编辑用户"><i
+                                        class="icon-common-edit icon-edit"></i></a>
+                                <a href="/zentao/user-delete-2.html" title="删除用户" class="btn iframe"><i
+                                        class="icon-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="c-id">
+                                <div class="checkbox-primary"><input type="checkbox" name="users[]" value="fqJY"
+                                                                     id="usersfqJY"> <label for="usersfqJY"></label>
+                                </div>
+                                <a href="/zentao/user-view-fqJY.html">003</a>
+                            </td>
+                            <td><a href="/zentao/user-view-fqJY.html" title="付强">付强</a>
+                            </td>
+                            <td>fqJY</td>
+                            <td class="w-90px" title="项目经理">项目经理</td>
+                            <td class="c-url" title=""></td>
+                            <td class="c-type">男</td>
+                            <td></td>
+                            <td></td>
+                            <td class="c-date">2021-05-07</td>
+                            <td class="c-num text-center">1</td>
+                            <td class="c-actions">
+                                <button type="button" class="disabled btn "><i
+                                        class="icon-user-unlock disabled icon-unlock" title="解锁用户"></i></button>
+                                <a href="/zentao/user-edit-3-company.html" class="btn " title="编辑用户"><i
+                                        class="icon-common-edit icon-edit"></i></a>
+                                <a href="/zentao/user-delete-3.html" title="删除用户" class="btn iframe"><i
+                                        class="icon-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="c-id">
+                                <div class="checkbox-primary"><input type="checkbox" name="users[]" value="meixi"
+                                                                     id="usersmeixi"> <label for="usersmeixi"></label>
+                                </div>
+                                <a href="/zentao/user-view-meixi.html">004</a>
+                            </td>
+                            <td><a href="/zentao/user-view-meixi.html" title="c罗">c罗</a>
+                            </td>
+                            <td>meixi</td>
+                            <td class="w-90px" title="产品经理">产品经理</td>
+                            <td class="c-url" title=""></td>
+                            <td class="c-type">男</td>
+                            <td></td>
+                            <td></td>
+                            <td class="c-date">2021-05-07</td>
+                            <td class="c-num text-center">1</td>
+                            <td class="c-actions">
+                                <button type="button" class="disabled btn "><i
+                                        class="icon-user-unlock disabled icon-unlock" title="解锁用户"></i></button>
+                                <a href="/zentao/user-edit-4-company.html" class="btn " title="编辑用户"><i
+                                        class="icon-common-edit icon-edit"></i></a>
+                                <a href="/zentao/user-delete-4.html" title="删除用户" class="btn iframe"><i
+                                        class="icon-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="c-id">
+                                <div class="checkbox-primary"><input type="checkbox" name="users[]" value="luobo"
+                                                                     id="usersluobo"> <label for="usersluobo"></label>
+                                </div>
+                                <a href="/zentao/user-view-luobo.html">005</a>
+                            </td>
+                            <td><a href="/zentao/user-view-luobo.html" title="陈萝卜">陈萝卜</a>
+                            </td>
+                            <td>luobo</td>
+                            <td class="w-90px" title="测试">测试</td>
+                            <td class="c-url" title="fuyu16032001@gmail.com"><a href="mailto:fuyu16032001@gmail.com">fuyu16032001@gmail.com</a>
+                            </td>
+                            <td class="c-type">男</td>
+                            <td></td>
+                            <td></td>
+                            <td class="c-date">2021-05-07</td>
+                            <td class="c-num text-center">2</td>
+                            <td class="c-actions">
+                                <button type="button" class="disabled btn "><i
+                                        class="icon-user-unlock disabled icon-unlock" title="解锁用户"></i></button>
+                                <a href="/zentao/user-edit-5-company.html" class="btn " title="编辑用户"><i
+                                        class="icon-common-edit icon-edit"></i></a>
+                                <a href="/zentao/user-delete-5.html" title="删除用户" class="btn iframe"><i
+                                        class="icon-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="c-id">
+                                <div class="checkbox-primary"><input type="checkbox" name="users[]" value="tongzuo"
+                                                                     id="userstongzuo"> <label
+                                        for="userstongzuo"></label></div>
+                                <a href="/zentao/user-view-tongzuo.html">006</a>
+                            </td>
+                            <td><a href="/zentao/user-view-tongzuo.html" title="同桌">同桌</a>
+                            </td>
+                            <td>tongzuo</td>
+                            <td class="w-90px" title="研发">研发</td>
+                            <td class="c-url" title=""></td>
+                            <td class="c-type">女</td>
+                            <td></td>
+                            <td></td>
+                            <td class="c-date">2021-05-19</td>
+                            <td class="c-num text-center">4</td>
+                            <td class="c-actions">
+                                <button type="button" class="disabled btn "><i
+                                        class="icon-user-unlock disabled icon-unlock" title="解锁用户"></i></button>
+                                <a href="/zentao/user-edit-6-company.html" class="btn " title="编辑用户"><i
+                                        class="icon-common-edit icon-edit"></i></a>
+                                <a href="/zentao/user-delete-6.html" title="删除用户" class="btn iframe"><i
+                                        class="icon-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="c-id">
+                                <div class="checkbox-primary"><input type="checkbox" name="users[]" value="123"
+                                                                     id="users123"> <label for="users123"></label></div>
+                                <a href="/zentao/user-view-123.html">007</a>
+                            </td>
+                            <td><a href="/zentao/user-view-123.html" title="刚强萨">刚强萨</a>
+                            </td>
+                            <td>123</td>
+                            <td class="w-90px" title="产品经理">产品经理</td>
+                            <td class="c-url" title=""></td>
+                            <td class="c-type">男</td>
+                            <td></td>
+                            <td></td>
+                            <td class="c-date"></td>
+                            <td class="c-num text-center">0</td>
+                            <td class="c-actions">
+                                <button type="button" class="disabled btn "><i
+                                        class="icon-user-unlock disabled icon-unlock" title="解锁用户"></i></button>
+                                <a href="/zentao/user-edit-7-company.html" class="btn " title="编辑用户"><i
+                                        class="icon-common-edit icon-edit"></i></a>
+                                <a href="/zentao/user-delete-7.html" title="删除用户" class="btn iframe"><i
+                                        class="icon-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="c-id">
+                                <div class="checkbox-primary"><input type="checkbox" name="users[]" value="ceshi"
+                                                                     id="usersceshi"> <label for="usersceshi"></label>
+                                </div>
+                                <a href="/zentao/user-view-ceshi.html">008</a>
+                            </td>
+                            <td><a href="/zentao/user-view-ceshi.html" title="测试">测试</a>
+                            </td>
+                            <td>ceshi</td>
+                            <td class="w-90px" title="测试">测试</td>
+                            <td class="c-url" title=""></td>
+                            <td class="c-type">女</td>
+                            <td></td>
+                            <td></td>
+                            <td class="c-date">2021-05-19</td>
+                            <td class="c-num text-center">8</td>
+                            <td class="c-actions">
+                                <button type="button" class="disabled btn "><i
+                                        class="icon-user-unlock disabled icon-unlock" title="解锁用户"></i></button>
+                                <a href="/zentao/user-edit-8-company.html" class="btn " title="编辑用户"><i
+                                        class="icon-common-edit icon-edit"></i></a>
+                                <a href="/zentao/user-delete-8.html" title="删除用户" class="btn iframe"><i
+                                        class="icon-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="c-id">
+                                <div class="checkbox-primary"><input type="checkbox" name="users[]" value="a23"
+                                                                     id="usersa23"> <label for="usersa23"></label></div>
+                                <a href="/zentao/user-view-a23.html">010</a>
+                            </td>
+                            <td><a href="/zentao/user-view-a23.html" title="珍妮">珍妮</a>
+                            </td>
+                            <td>a23</td>
+                            <td class="w-90px" title="测试">测试</td>
+                            <td class="c-url" title=""></td>
+                            <td class="c-type">女</td>
+                            <td></td>
+                            <td></td>
+                            <td class="c-date"></td>
+                            <td class="c-num text-center">0</td>
+                            <td class="c-actions">
+                                <button type="button" class="disabled btn "><i
+                                        class="icon-user-unlock disabled icon-unlock" title="解锁用户"></i></button>
+                                <a href="/zentao/user-edit-10-company.html" class="btn " title="编辑用户"><i
+                                        class="icon-common-edit icon-edit"></i></a>
+                                <a href="/zentao/user-delete-10.html" title="删除用户" class="btn iframe"><i
+                                        class="icon-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="c-id">
+                                <div class="checkbox-primary"><input type="checkbox" name="users[]" value="12343"
+                                                                     id="users12343"> <label for="users12343"></label>
+                                </div>
+                                <a href="/zentao/user-view-12343.html">011</a>
+                            </td>
+                            <td><a href="/zentao/user-view-12343.html" title="杜雅凡">杜雅凡</a>
+                            </td>
+                            <td>12343</td>
+                            <td class="w-90px" title="研发主管">研发主管</td>
+                            <td class="c-url" title=""></td>
+                            <td class="c-type">女</td>
+                            <td></td>
+                            <td></td>
+                            <td class="c-date"></td>
+                            <td class="c-num text-center">0</td>
+                            <td class="c-actions">
+                                <button type="button" class="disabled btn "><i
+                                        class="icon-user-unlock disabled icon-unlock" title="解锁用户"></i></button>
+                                <a href="/zentao/user-edit-11-company.html" class="btn " title="编辑用户"><i
+                                        class="icon-common-edit icon-edit"></i></a>
+                                <a href="/zentao/user-delete-11.html" title="删除用户" class="btn iframe"><i
+                                        class="icon-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="c-id">
+                                <div class="checkbox-primary"><input type="checkbox" name="users[]" value="lyc"
+                                                                     id="userslyc"> <label for="userslyc"></label></div>
+                                <a href="/zentao/user-view-lyc.html">012</a>
+                            </td>
+                            <td><a href="/zentao/user-view-lyc.html" title="baicai">baicai</a>
+                            </td>
+                            <td>lyc</td>
+                            <td class="w-90px" title="高层管理">高层管理</td>
+                            <td class="c-url" title=""></td>
+                            <td class="c-type">女</td>
+                            <td></td>
+                            <td></td>
+                            <td class="c-date"></td>
+                            <td class="c-num text-center">0</td>
+                            <td class="c-actions">
+                                <button type="button" class="disabled btn "><i
+                                        class="icon-user-unlock disabled icon-unlock" title="解锁用户"></i></button>
+                                <a href="/zentao/user-edit-12-company.html" class="btn " title="编辑用户"><i
+                                        class="icon-common-edit icon-edit"></i></a>
+                                <a href="/zentao/user-delete-12.html" title="删除用户" class="btn iframe"><i
+                                        class="icon-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="c-id">
+                                <div class="checkbox-primary"><input type="checkbox" name="users[]" value="baicai"
+                                                                     id="usersbaicai"> <label for="usersbaicai"></label>
+                                </div>
+                                <a href="/zentao/user-view-baicai.html">013</a>
+                            </td>
+                            <td><a href="/zentao/user-view-baicai.html" title="lyc">lyc</a>
+                            </td>
+                            <td>baicai</td>
+                            <td class="w-90px" title="高层管理">高层管理</td>
+                            <td class="c-url" title=""></td>
+                            <td class="c-type">女</td>
+                            <td></td>
+                            <td></td>
+                            <td class="c-date">2021-05-15</td>
+                            <td class="c-num text-center">3</td>
+                            <td class="c-actions">
+                                <button type="button" class="disabled btn "><i
+                                        class="icon-user-unlock disabled icon-unlock" title="解锁用户"></i></button>
+                                <a href="/zentao/user-edit-13-company.html" class="btn " title="编辑用户"><i
+                                        class="icon-common-edit icon-edit"></i></a>
+                                <a href="/zentao/user-delete-13.html" title="删除用户" class="btn iframe"><i
+                                        class="icon-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="c-id">
+                                <div class="checkbox-primary"><input type="checkbox" name="users[]" value="xiaozhu"
+                                                                     id="usersxiaozhu"> <label
+                                        for="usersxiaozhu"></label></div>
+                                <a href="/zentao/user-view-xiaozhu.html">014</a>
+                            </td>
+                            <td><a href="/zentao/user-view-xiaozhu.html" title="李">李</a>
+                            </td>
+                            <td>xiaozhu</td>
+                            <td class="w-90px" title="测试">测试</td>
+                            <td class="c-url" title=""></td>
+                            <td class="c-type">女</td>
+                            <td></td>
+                            <td></td>
+                            <td class="c-date"></td>
+                            <td class="c-num text-center">0</td>
+                            <td class="c-actions">
+                                <button type="button" class="disabled btn "><i
+                                        class="icon-user-unlock disabled icon-unlock" title="解锁用户"></i></button>
+                                <a href="/zentao/user-edit-14-company.html" class="btn " title="编辑用户"><i
+                                        class="icon-common-edit icon-edit"></i></a>
+                                <a href="/zentao/user-delete-14.html" title="删除用户" class="btn iframe"><i
+                                        class="icon-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="c-id">
+                                <div class="checkbox-primary"><input type="checkbox" name="users[]" value="tom"
+                                                                     id="userstom"> <label for="userstom"></label></div>
+                                <a href="/zentao/user-view-tom.html">015</a>
+                            </td>
+                            <td><a href="/zentao/user-view-tom.html" title="汤姆">汤姆</a>
+                            </td>
+                            <td>tom</td>
+                            <td class="w-90px" title="研发">研发</td>
+                            <td class="c-url" title="123456789@qq.com"><a href="mailto:123456789@qq.com">123456789@qq.com</a>
+                            </td>
+                            <td class="c-type">男</td>
+                            <td></td>
+                            <td></td>
+                            <td class="c-date"></td>
+                            <td class="c-num text-center">0</td>
+                            <td class="c-actions">
+                                <button type="button" class="disabled btn "><i
+                                        class="icon-user-unlock disabled icon-unlock" title="解锁用户"></i></button>
+                                <a href="/zentao/user-edit-15-company.html" class="btn " title="编辑用户"><i
+                                        class="icon-common-edit icon-edit"></i></a>
+                                <a href="/zentao/user-delete-15.html" title="删除用户" class="btn iframe"><i
+                                        class="icon-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="c-id">
+                                <div class="checkbox-primary"><input type="checkbox" name="users[]" value="a12"
+                                                                     id="usersa12"> <label for="usersa12"></label></div>
+                                <a href="/zentao/user-view-a12.html">016</a>
+                            </td>
+                            <td><a href="/zentao/user-view-a12.html" title="xxn">xxn</a>
+                            </td>
+                            <td>a12</td>
+                            <td class="w-90px" title="研发">研发</td>
+                            <td class="c-url" title=""></td>
+                            <td class="c-type">男</td>
+                            <td></td>
+                            <td></td>
+                            <td class="c-date">2021-05-15</td>
+                            <td class="c-num text-center">1</td>
+                            <td class="c-actions">
+                                <button type="button" class="disabled btn "><i
+                                        class="icon-user-unlock disabled icon-unlock" title="解锁用户"></i></button>
+                                <a href="/zentao/user-edit-16-company.html" class="btn " title="编辑用户"><i
+                                        class="icon-common-edit icon-edit"></i></a>
+                                <a href="/zentao/user-delete-16.html" title="删除用户" class="btn iframe"><i
+                                        class="icon-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="c-id">
+                                <div class="checkbox-primary"><input type="checkbox" name="users[]" value="diaofen"
+                                                                     id="usersdiaofen"> <label
+                                        for="usersdiaofen"></label></div>
+                                <a href="/zentao/user-view-diaofen.html">017</a>
+                            </td>
+                            <td><a href="/zentao/user-view-diaofen.html" title="绿豆">绿豆</a>
+                            </td>
+                            <td>diaofen</td>
+                            <td class="w-90px" title="测试">测试</td>
+                            <td class="c-url" title=""></td>
+                            <td class="c-type">女</td>
+                            <td></td>
+                            <td></td>
+                            <td class="c-date">2021-05-15</td>
+                            <td class="c-num text-center">2</td>
+                            <td class="c-actions">
+                                <button type="button" class="disabled btn "><i
+                                        class="icon-user-unlock disabled icon-unlock" title="解锁用户"></i></button>
+                                <a href="/zentao/user-edit-17-company.html" class="btn " title="编辑用户"><i
+                                        class="icon-common-edit icon-edit"></i></a>
+                                <a href="/zentao/user-delete-17.html" title="删除用户" class="btn iframe"><i
+                                        class="icon-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="c-id">
+                                <div class="checkbox-primary"><input type="checkbox" name="users[]" value="a123"
+                                                                     id="usersa123"> <label for="usersa123"></label>
+                                </div>
+                                <a href="/zentao/user-view-a123.html">018</a>
+                            </td>
+                            <td><a href="/zentao/user-view-a123.html" title="zxh">zxh</a>
+                            </td>
+                            <td>a123</td>
+                            <td class="w-90px" title=""></td>
+                            <td class="c-url" title=""></td>
+                            <td class="c-type">女</td>
+                            <td></td>
+                            <td></td>
+                            <td class="c-date">2021-05-15</td>
+                            <td class="c-num text-center">2</td>
+                            <td class="c-actions">
+                                <button type="button" class="disabled btn "><i
+                                        class="icon-user-unlock disabled icon-unlock" title="解锁用户"></i></button>
+                                <a href="/zentao/user-edit-18-company.html" class="btn " title="编辑用户"><i
+                                        class="icon-common-edit icon-edit"></i></a>
+                                <a href="/zentao/user-delete-18.html" title="删除用户" class="btn iframe"><i
+                                        class="icon-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="c-id">
+                                <div class="checkbox-primary"><input type="checkbox" name="users[]" value="LLLLLDN"
+                                                                     id="usersLLLLLDN"> <label
+                                        for="usersLLLLLDN"></label></div>
+                                <a href="/zentao/user-view-LLLLLDN.html">019</a>
+                            </td>
+                            <td><a href="/zentao/user-view-LLLLLDN.html" title="李">李</a>
+                            </td>
+                            <td>LLLLLDN</td>
+                            <td class="w-90px" title="测试">测试</td>
+                            <td class="c-url" title=""></td>
+                            <td class="c-type">女</td>
+                            <td></td>
+                            <td></td>
+                            <td class="c-date">2021-05-15</td>
+                            <td class="c-num text-center">1</td>
+                            <td class="c-actions">
+                                <button type="button" class="disabled btn "><i
+                                        class="icon-user-unlock disabled icon-unlock" title="解锁用户"></i></button>
+                                <a href="/zentao/user-edit-19-company.html" class="btn " title="编辑用户"><i
+                                        class="icon-common-edit icon-edit"></i></a>
+                                <a href="/zentao/user-delete-19.html" title="删除用户" class="btn iframe"><i
+                                        class="icon-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="c-id">
+                                <div class="checkbox-primary"><input type="checkbox" name="users[]" value="test0018"
+                                                                     id="userstest0018"> <label
+                                        for="userstest0018"></label></div>
+                                <a href="/zentao/user-view-test0018.html">020</a>
+                            </td>
+                            <td><a href="/zentao/user-view-test0018.html" title="lindafang123">lindafang123</a>
+                            </td>
+                            <td>test0018</td>
+                            <td class="w-90px" title="测试">测试</td>
+                            <td class="c-url" title=""></td>
+                            <td class="c-type">男</td>
+                            <td></td>
+                            <td></td>
+                            <td class="c-date"></td>
+                            <td class="c-num text-center">0</td>
+                            <td class="c-actions">
+                                <button type="button" class="disabled btn "><i
+                                        class="icon-user-unlock disabled icon-unlock" title="解锁用户"></i></button>
+                                <a href="/zentao/user-edit-20-company.html" class="btn " title="编辑用户"><i
+                                        class="icon-common-edit icon-edit"></i></a>
+                                <a href="/zentao/user-delete-20.html" title="删除用户" class="btn iframe"><i
+                                        class="icon-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="c-id">
+                                <div class="checkbox-primary"><input type="checkbox" name="users[]" value="test0019"
+                                                                     id="userstest0019"> <label
+                                        for="userstest0019"></label></div>
+                                <a href="/zentao/user-view-test0019.html">021</a>
+                            </td>
+                            <td><a href="/zentao/user-view-test0019.html" title="lindafang12319">lindafang12319</a>
+                            </td>
+                            <td>test0019</td>
+                            <td class="w-90px" title="测试">测试</td>
+                            <td class="c-url" title=""></td>
+                            <td class="c-type">男</td>
+                            <td></td>
+                            <td></td>
+                            <td class="c-date"></td>
+                            <td class="c-num text-center">0</td>
+                            <td class="c-actions">
+                                <button type="button" class="disabled btn "><i
+                                        class="icon-user-unlock disabled icon-unlock" title="解锁用户"></i></button>
+                                <a href="/zentao/user-edit-21-company.html" class="btn " title="编辑用户"><i
+                                        class="icon-common-edit icon-edit"></i></a>
+                                <a href="/zentao/user-delete-21.html" title="删除用户" class="btn iframe"><i
+                                        class="icon-trash"></i></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="table-footer fixed-footer" style="bottom: 40px; left: 220px; width: 960px;">
+                        <div class="checkbox-primary check-all"><label>全选</label></div>
+                        <div class="table-actions btn-toolbar">
+                            <button type="submit" id="submit" class="btn" data-loading="稍候...">编辑</button>
+                        </div>
+                        <ul class="pager" data-page-cookie="pagerCompanyBrowse" data-ride="pager" data-rec-total="50"
+                            data-rec-per-page="20" data-page="1"
+                            data-link-creator="/zentao/company-browse-0-bydept-id-50-{recPerPage}-{page}.html">
+                            <li>
+                                <div class="pager-label">共 <strong>50</strong> 项</div>
+                            </li>
+                            <li>
+                                <div class="btn-group pager-size-menu dropup">
+                                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"
+                                            style="border-radius: 2px;">每页 <strong>20</strong> 项 <span
+                                            class="caret"></span></button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="###" data-size="5">5</a></li>
+                                        <li><a href="###" data-size="10">10</a></li>
+                                        <li><a href="###" data-size="15">15</a></li>
+                                        <li class="active"><a href="###" data-size="20">20</a></li>
+                                        <li><a href="###" data-size="25">25</a></li>
+                                        <li><a href="###" data-size="30">30</a></li>
+                                        <li><a href="###" data-size="35">35</a></li>
+                                        <li><a href="###" data-size="40">40</a></li>
+                                        <li><a href="###" data-size="45">45</a></li>
+                                        <li><a href="###" data-size="50">50</a></li>
+                                        <li><a href="###" data-size="100">100</a></li>
+                                        <li><a href="###" data-size="200">200</a></li>
+                                        <li><a href="###" data-size="500">500</a></li>
+                                        <li><a href="###" data-size="1000">1000</a></li>
+                                        <li><a href="###" data-size="2000">2000</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="active disabled pager-item-left"><a title="第 1 页" class="pager-item"
+                                                                           data-page="1"
+                                                                           href="/zentao/company-browse-0-bydept-id-50-20-1.html"><i
+                                    class="icon icon-first-page"></i></a></li>
+                            <li class="disabled pager-item-right"><a title="第 0 页" class="pager-item" data-page="0"
+                                                                     href="###"><i class="icon icon-angle-left"></i></a>
+                            </li>
+                            <li>
+                                <div class="pager-label"><strong>1</strong>/<strong>3</strong></div>
+                            </li>
+                            <li class="pager-item-left"><a title="第 2 页" class="pager-item" data-page="2"
+                                                           href="/zentao/company-browse-0-bydept-id-50-20-2.html"><i
+                                    class="icon icon-angle-right"></i></a></li>
+                            <li class="pager-item-right"><a title="第 3 页" class="pager-item" data-page="3"
+                                                            href="/zentao/company-browse-0-bydept-id-50-20-3.html"><i
+                                    class="icon icon-last-page"></i></a></li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script lanugage="javascript">$('#dept0').addClass('active');</script>
+    </div>
+    <script>
+        $.initSidebar();
+    </script>
+
+    <iframe frameborder="0" name="hiddenwin" id="hiddenwin" scrolling="no" class="debugwin hidden"></iframe>
+
+</main>
+<footer id="footer">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="/zentao/my/">禅道</a>
+            </li>
+            <li><a href="/zentao/company/">组织</a>
+            </li>
+            <li class="active">部门结构</li>
+        </ul>
+        <div id="poweredBy">
+            <small class="muted"><a href="https://api.zentao.net/goto.php?item=aiux" class="link-aiux" target="_blank">Designed
+                by <strong>艾体验</strong></a></small> &nbsp;
+            <a href="https://www.zentao.net" target="_blank"><i class="icon-zentao"></i> 禅道12.0</a> &nbsp;
+            <a href="https://api.zentao.net/goto.php?item=proversion&amp;from=footer" target="_blank" id="proLink"
+               class="text-important">专业版 <i class="text-danger icon-pro-version"></i></a> &nbsp;
+        </div>
+    </div>
+</footer>
+<div id="noticeBox"></div>
+<script>
+    browserNotice = '你目前使用的浏览器可能无法得到最佳浏览效果，建议使用Chrome、火狐、IE9+、Opera、Safari浏览器。'
+
+    function ajaxIgnoreBrowser() {
+        $.get(createLink('misc', 'ajaxIgnoreBrowser'));
+    }
+
+    $(function () {
+        showBrowserNotice()
+    });
+
+    /* Alert got messages. */
+    needPing = false;
+    $(function () {
+        var windowBlur = false;
+        if (window.Notification) {
+            window.onblur = function () {
+                windowBlur = true;
+            }
+            window.onfocus = function () {
+                windowBlur = false;
+            }
+        }
+        setInterval(function () {
+            $.get(createLink('message', 'ajaxGetMessage', "windowBlur=" + (windowBlur ? '1' : '0')), function (data) {
+                if (!windowBlur) {
+                    $('#noticeBox').append(data);
+                    adjustNoticePosition();
+                } else {
+                    if (data) {
+                        if (typeof data == 'string') data = $.parseJSON(data);
+                        if (typeof data.message == 'string') notifyMessage(data);
+                    }
+                }
+            });
+        }, 300000);
+    })
+
+</script>
+
+<script>$(".tree .active").parent('li').addClass('active');
+</script>
+
+
+</body>
+</html>
