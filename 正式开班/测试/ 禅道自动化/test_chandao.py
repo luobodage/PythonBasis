@@ -27,7 +27,7 @@ from add_user import Add_user
 
 login_username = ['admin']
 login_password = ['123456.']
-username_list = ['luobodarling003', 'yuyudarling003', 'baby003', 'darling003']
+username_list = ['luobodarling004', 'yuyudarling004', 'baby004', 'darling004']
 
 
 @pytest.fixture(scope='module')
